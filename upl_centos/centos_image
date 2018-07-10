@@ -1,11 +1,14 @@
+### Upload a CentOS image and set a root password via cloud init ### 
 
 
 
-### set a pass for centos cloud image ### 
 
+# get the centos cloud image 
 wget https://cloud.centos.org/centos/7/images/CentOS-7-x86_64-GenericCloud-1805.qcow2 
 
+# upload to openstack 
 openstack image create --public --disk-format qcow2 --container-format bare --file CentOS-7-x86_64-GenericCloud-1805.qcow2  --property centos_1804
 
-# add cloud.cfg 
-#nova boot --flavor m1.large --nic net-id=xxxxx--user-data cloud.cfg --image centos_1804 --availability-zone nova:rk03-dell-comp03.localdomain centos_vm_test
+# password for cloud.cfg -> stackops
+nova boot --flavor m1.large --nic net-id=xxxxx--user-data cloud.cfg --image centos_1804 --availability-zone nova:rk03-dell-comp03.localdomain centos_vm_test
+
